@@ -25,92 +25,92 @@
             overflow-x: hidden;
         }
 
-        /* Header styles */
-        .header-box {
+       /* Header styles */
+header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 10px 0; /* Reduce padding to make it smaller */
+    height: 17%;
+    padding: 0 20px; /* Adjusted padding */
     z-index: 1000;
-    background-image: url('{% static "bghead1.jpeg" %}'); /* Add background image */
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: overlay;
-    transition: padding 0.5s; /* Add transition for smoother effect */
+    background: url('{% static 'bghead1.jpeg' %}') no-repeat center center/cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    overflow: hidden; /* Ensure content doesn't overflow */
 }
 
-.header-box.scrolled {
-    padding: 5px 0; /* Adjust the padding when scrolled */
-    background-color: #A894D5; /* Add background color when scrolled */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-container img {
+    margin-left:0px;
+    width: 80px;
+    height: 100%; /* Adjusted height to fill the header vertically */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo-container img[alt="Interflow title"] {
+    width: auto; /* Allow the image to adjust its width */
+    height: 120px; /* Set the desired height */
+    margin-top: 10px; /* Adjust margin to align vertically */
 }
 
 
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center; /* Align nav items vertically */
+}
 
-        .logo-container img {
-            width: 80px;
-            height: auto;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+nav ul li {
+    margin: 0 20px;
+}
 
-        .logo-container img:hover {
-            transform: scale(1.1);
-        }
+nav ul li a {
+    text-decoration: none;
+    color: #373434;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
+nav ul li a:hover {
+    color: #6a0dad;
+}
 
-        nav ul li {
-            margin: 0 20px;
-        }
+nav ul li a.active {
+    background-color: #6a0dad;
+    color: #fff;
+    border-radius: 5px;
+    padding: 8px 15px;
+}
 
-        nav ul li a {
-            text-decoration: none;
-            color: #373434;
-            font-size: 16px;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+.title {
+    font-size: 36px;
+    color: #030303;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
 
-        nav ul li a:hover {
-    color: #6a0dad;}
+.title:hover {
+    transform: scale(1.1);
+    color: #6a0dad;
+}
 
-        nav ul li a.active {
-            background-color: #6a0dad;
-            color: #fff;
-            border-radius: 5px;
-            padding: 8px 15px;
-        }
-
-        .title {
-            font-size: 36px;
-            color: #030303;
-            font-family: 'Montserrat', sans-serif;
-            cursor: pointer;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        .title:hover {
-            transform: scale(1.1);
-            color: #6a0dad;
-        }
 
         /* Main container */
         .container {
-            max-width: 900px;
+            max-width: none;
             margin: 120px auto 50px;
             text-align: center;
             padding: 0 20px;
@@ -155,25 +155,46 @@
 }
 
 /* Ensured the images in the slideshow match the content's width */
+/* Adjust slideshow container */
 .slideshow-container {
     position: relative;
-    width: 100%; /* Set to 100% to match content width */
-    max-width: 1000px; /* Maximum width to match content */
+    width: 100%;
+    max-width: 1000px;
     margin: auto;
-    border-radius: 10px;
-    overflow: hidden;
+    overflow: hidden; /* Ensure images don't overflow their containers */
 }
 
+/* Ensure landscape orientation for images */
+/* Ensure landscape orientation for images */
+/* Ensure landscape orientation for images */
 .slideshow-container img {
-    width: 100%;
-    display: none;
-    border-radius: 10px; /* Apply border radius to images */
+    max-width: 200%; /* Increase the width */
+    max-height: 200%; /* Maintain aspect ratio */
+    object-fit: cover;
 }
+
+
+
 
 .slideshow-container img.active {
     display: block;
 }
+/* Aspect ratio for landscape images */
+.aspect-ratio-box {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 aspect ratio */
+    overflow: hidden;
+}
 
+.aspect-ratio-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 /* Remove the prev/next button styles */
 .prev, .next {
@@ -228,12 +249,14 @@
 
 /* Ensured uniform size for team member images */
 .team-member img {
-    width: 100%; /* Set image width to 100% */
-    height: auto; /* Maintain aspect ratio */
+    width: 150px; /* Set a fixed width */
+    height: 200px; /* Set a fixed height */
+    object-fit: cover;
     border-radius: 50%;
     border: 4px solid #6a0dad;
     transition: transform 0.5s ease;
 }
+
 
 .team-member:hover img {
     transform: scale(1.1);
@@ -313,43 +336,249 @@
             transition: color 0.3s ease;
         }
 
-        /* Contact icon styles */
-        .contact-icons {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .contact-icons a {
-            text-decoration: none;
-            color: #373434;
-            font-size: 24px;
-            margin: 0 10px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .contact-icons a:hover {
-    color: #6a0dad;
-    transform: scale(1.2);
+        /* Contact Us Section */
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding: 0 20px;
 }
 
-        /* Footer */
-        footer {
-            background-color: #292929;
+.contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+}
+
+.contact-item button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 10px; /* Add margin between the icon button and the content */
+}
+
+.contact-item button:focus {
+    outline: none;
+}
+
+.contact-item p {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-item i {
+    margin-bottom: 20px;
+    color: #6a0dad;
+    font-size: 24px;
+}
+
+
+
+/* Add space between icon and content */
+.contact-info p i {
+    margin-right: 10px;
+}
+
+/* Adjust margin between icon and content */
+.contact-info p span {
+    margin-right: 10px;
+}
+
+.contact-form {
+    flex: 1;
+    max-width: 45%;
+    padding: 20px;
+    background: linear-gradient(to bottom, #A894D5, #C4AEF2, #E0CAFF, #FDE6FF); /* Match form color to page gradient */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    margin-bottom: 20px; /* Add margin to separate from other sections */
+}
+
+.contact-form:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #6a0dad;
+}
+
+.contact-form .form-group {
+    margin-bottom: 15px; /* Adjust vertical spacing between form groups */
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.8); /* Make input background slightly transparent */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #6a0dad;
+    box-shadow: 0 0 5px rgba(106, 13, 173, 0.5);
+    outline: none;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 70px; /* Reduce minimum height of textarea */
+}
+
+.contact-form button {
+    display: inline-block;
+    padding: 14px 30px;
+    background-color: #6a0dad;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #4c137a;
+    transform: translateY(-2px);
+}
+
+.contact-form button:active {
+    transform: translateY(0);
+}
+
+
+/* Media Queries */
+@media(max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .contact-info,
+    .contact-form {
+        max-width: 100%;
+    }
+}
+
+
+
+       /* Footer styles */
+       footer {
+            background-color:none;
             color: #fff;
+            padding: 40px 20px;
             text-align: center;
-            padding: 20px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+            font-family: 'Open Sans', sans-serif;
         }
 
-        footer p {
-            font-size: 16px;
-            margin-bottom: 10px;
-            color:white;
+        footer .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        footer .footer-logo img {
+            margin-right: 10px;
+        }
+
+        footer .footer-logo span {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        footer .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer .footer-content p {
+           margin-bottom: 0%;
+            color:black;
+        }
+
+        footer .footer-content a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-content a:hover {
+            color: #ddd;
+        }
+
+        footer .footer-social {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        footer .footer-social a {
+            color: #6a0dad;
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-social a:hover {
+            color: #4c137a;
+        }
+
+        footer .footer-contact {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        /* Button styles */
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #6a0dad;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #4c137a;
+            transform: scale(1.1);
+        }
+
+        /* Animation styles */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Media queries */
@@ -381,9 +610,11 @@
 </head>
 <body>
     <header class="header-box">
+        
         <div class="header-content">
             <div class="logo-container">
-                <img src="{% static 'logo.jpg' %}" alt="Interflow AI Logo" onclick="reloadPage()">
+                <img src="{% static 'logo - nb.png' %}" alt="Interflow AI Logo" onclick="reloadPage()">
+                <img src="{% static 'interflow title - nb.png' %}" alt="Interflow title" onclick="reloadPage()">
             </div>
             <nav>
                 <ul>
@@ -392,6 +623,7 @@
                     <li><a href="#team" class="nav-link">Team</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
                     <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                     
                 </ul>
             </nav>
@@ -401,28 +633,29 @@
     <div class="container">
         <div class="slide full-screen" id="home">
             <div class="content">
-                <h2>Welcome to INTERFLOW.AI</h2>
+                <h2>Welcome to INTERFLOW AI</h2>
                 <p>We are Interflow AI, a leading provider of AI-based web applications and products. Explore our website to learn more about our services, team, pricing, and how to get in touch with us. We look forward to helping you unlock the full potential of artificial intelligence for your business!</p>
             </div>
             <div class="slideshow-container">
-                <img src="{% static 'welcome img 1.jpeg' %}" class="active" alt="Welcome Image 1">
-                <img src="{% static 'welcome img 2.jpeg' %}" alt="Welcome Image 2">
-                <img src="{% static 'welcome img 3.jpeg' %}" alt="Welcome Image 3">
+                <img src="{% static 'welcome ls 1.jpeg' %}" class="active" alt="Welcome Image 1">
+                <img src="{% static 'welcome ls 2.jpeg' %}" class="active" alt="Welcome Image 2">
+                <img src="{% static 'welcome ls 3.jpeg' %}" class="active" alt="Welcome Image 3">
             </div>
         </div>
         
         
         
         <div class="section" id="about">
-            <h1>About Us</h1>
+            
             <div class="slide full-screen">
                 <div class="content">
-                    <p>INTERFLOW.AI specializes in AI solutions for businesses, utilizing cutting-edge technology to stay ahead in the market. Our experienced team delivers tailored chatbots, predictive analytics, and machine learning models. We're passionate about driving business growth and enhancing user experiences. Contact us to learn more!</p>
+                    <h1>About Us</h1>
+                    <p>INTERFLOW AI specializes in AI solutions for businesses, utilizing cutting-edge technology to stay ahead in the market. Our experienced team delivers tailored chatbots, predictive analytics, and machine learning models. We're passionate about driving business growth and enhancing user experiences. Contact us to learn more!</p>
                 </div>
                 <div class="slideshow-container">
-                    <img src="{% static 'about us img 1.jpeg' %}" class="active" alt="About Image 1">
-                    <img src="{% static 'about us img 2.jpeg' %}" alt="About Image 2">
-                    <img src="{% static 'about us img 3.jpeg' %}" alt="About Image 3">
+                    <img src="{% static 'about ls 1.jpeg' %}" class="active" alt="About Image 1">
+                    <img src="{% static 'about ls 2.jpeg' %}" class="active" alt="About Image 2">
+                    <img src="{% static 'about ls 3.jpeg' %}" class="active" alt="About Image 3">
                 </div>
             </div>
         </div>
@@ -450,6 +683,16 @@
                     <img src="{% static 'vigneshwar.jpg' %}" alt="Team Member 4">
                     <h3>Vigneshwar</h3>
                     <p>UX Designer</p>
+                </div>
+                <div class="team-member">
+                    <img src="{% static 'prajith.jpg' %}" alt="Team Member 3">
+                    <h3>Prajith</h3>
+                    <p>Lead Developer</p>
+                </div>
+                <div class="team-member">
+                    <img src="{% static 'prakash.png' %}" alt="Team Member 3">
+                    <h3>Prakash</h3>
+                    <p>Lead Developer</p>
                 </div>
                
             </div>
@@ -495,25 +738,67 @@
             </div>
         </div>
 
-        <!-- Contact Section -->
         <div id="contact" class="section">
-            <h1>Contact Us</h1>
-            <p>Have questions or need more information? Reach out to us through our social media channels or send us an email.</p>
-            <div class="contact-icons">
-                <a href="#"><i class="fas fa-envelope"></i></a>
-                <a href="#"><i class="fas fa-phone"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
+            <h1 style="text-align: center; text-decoration: underline;">Contact Us</h1>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <button><i class="fas fa-phone"></i></button>
+                        <p>+123 456 7890</p>
+                    </div>
+                    <div class="contact-item">
+                        <button><i class="fas fa-envelope"></i></button>
+                        <p>info@interflowai.com</p>
+                    </div>
+                </div>
+                
+                
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Send Message</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+        
+               <!-- Slogan Section -->
+        <div class="section" id="slogan">
+            
+            <div style="background-color: rgba(106, 13, 173, 0.5); height: 15vh;">
+                <h1 style="text-align: center; ">BELIEVE . INSPIRE . ACHIEVE</h1></div>
+        </div>
+        
+        
 
-    <footer>
-        <p>&copy; 2024 Interflow AI. All rights reserved.</p>
-    </footer>
-
+        <div class="footer-social">
+            <a href="#"><i class="fas fa-envelope"></i></a>
+            <a href="#"><i class="fas fa-phone"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        <div class="footer-content">
+            <p>&copy; 2024 Interflow AI. All rights reserved.</p>
+           
+           
+        </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('nav ul li a');
@@ -582,24 +867,58 @@
         }
     
         document.addEventListener('DOMContentLoaded', function() {
-            const slideshows = document.querySelectorAll('.slideshow-container');
-    
-            slideshows.forEach(slideshow => {
-                let slideIndex = 0;
-                const slides = slideshow.querySelectorAll('img');
-                const totalSlides = slides.length;
-    
-                function showSlides() {
-                    slides.forEach(slide => slide.style.display = 'none');
-                    slideIndex = (slideIndex + 1) % totalSlides;
-                    slides[slideIndex].style.display = 'block';
-                }
-    
-                showSlides();
-    
-                setInterval(showSlides, 3000);
-            });
+    setTimeout(function() {
+        const welcomeSlide = document.querySelector('#home');
+        welcomeSlide.style.opacity = '1';
+        welcomeSlide.style.transform = 'translateY(0)';
+    }, 1000); // Delay the execution by 1 second (1000 milliseconds)
+
+    const slideshows = document.querySelectorAll('.slideshow-container');
+
+    slideshows.forEach(slideshow => {
+        let slideIndex = 0;
+        const slides = slideshow.querySelectorAll('img');
+        const totalSlides = slides.length;
+
+        function showSlides() {
+            slides.forEach(slide => slide.style.display = 'none');
+            slideIndex = (slideIndex + 1) % totalSlides;
+            slides[slideIndex].style.display = 'block';
+        }
+
+        showSlides();
+
+        setInterval(showSlides, 6000);
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(contactForm);
+
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+            }
+        }).then(response => {
+            if (response.ok) {
+                alert('Your message has been sent successfully!');
+                contactForm.reset();
+            } else {
+                alert('There was a problem sending your message. Please try again later.');
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+            alert('There was a problem sending your message. Please try again later.');
         });
+    });
+});
+
+
     </script>
     
     </script>
